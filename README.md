@@ -1,93 +1,91 @@
 # Soil Moisture Simulation
 
-## Overview
-
-An interactive simulation for modeling and visualizing soil moisture dynamics, featuring both global and per-cell parameter management for precise control over moisture behavior.
-
-## Recent Updates
-
-### New Features
-- Per-cell parameter customization
-- Enhanced visualization with default value display
-- Improved cell details dialog with parameter controls
-- "Reset All Cells to Global Parameters" functionality
-- Automatic save prompt before export operations
-
-### Improvements
-- Enhanced grid initialization and reset functionality
-- Improved state management and consistency
-- Better synchronization between grid and history states
-- More intuitive parameter controls
-- Enhanced data export reliability
-
-For a complete list of changes, see the [Changelog](claudeDev_docs/CHANGELOG.md).
+An interactive web application for simulating and visualizing soil moisture dynamics in a grid-based environment. This project helps users understand and analyze how various factors influence soil moisture levels over time.
 
 ## Features
 
-### Core Functionality
 - Interactive grid-based soil moisture simulation
-- Real-time visualization of moisture levels
-- Step-by-step simulation control (forward and backward)
-- Save and load simulation states
-- Export simulation data in JSON and CSV formats
-
-### Parameter Management
-- Global parameter controls:
+- Real-time visualization with customizable color schemes
+- Adjustable parameters:
   - Diffusion coefficient
   - Evapotranspiration rate
   - Irrigation rate
   - Moisture threshold
+- Save and load simulation states
+- Export simulation data in JSON and CSV formats
+- Step-by-step simulation control
 - Per-cell parameter customization
-- Parameter reset controls (individual and global)
 
-### Visualization Options
-- Multiple color schemes (default, blue scale, grayscale)
-- Cell value display (enabled by default)
-- Time series graphs
-- Heatmap visualization
-- Dynamic color legend
+## Tech Stack
 
-### Cell Controls
-- Individual moisture level adjustment
-- Tap status control
-- Parameter override capabilities
-- Reset options for individual cells
+### Frontend
+- Next.js 14
+- TypeScript
+- Tailwind CSS
+- React Context for state management
 
-## Documentation
-
-- [User Guide](claudeDev_docs/UserGuide.md) - Detailed instructions for using the simulation
-- [API Documentation](claudeDev_docs/APIDocumentation.md) - Backend API reference
-- [Technical Details](claudeDev_docs/sprintDocs/Sprint2_CoreFunctionalityRefactoring.md) - Implementation details and architecture
+### Backend
+- Node.js
+- Express
+- PostgreSQL
+- TypeScript
+- Swagger for API documentation
 
 ## Getting Started
 
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. Start the development server: `npm run dev`
-4. Open your browser to `http://localhost:3000`
+### Prerequisites
+- Node.js (v14 or later)
+- PostgreSQL
+- npm or yarn
 
-## Usage
+### Installation
 
-The simulation provides an intuitive interface for:
-1. Setting up initial conditions
-2. Adjusting global and per-cell parameters
-3. Running continuous or step-by-step simulations
-4. Visualizing moisture changes in real-time
-5. Exporting simulation data for analysis
+1. Clone the repository:
+```bash
+git clone [repository-url]
+cd soil-moisture-simulation
+```
 
-For detailed usage instructions, please refer to the [User Guide](claudeDev_docs/UserGuide.md).
+2. Install frontend dependencies:
+```bash
+npm install
+```
+
+3. Install backend dependencies:
+```bash
+cd backend
+npm install
+```
+
+4. Set up environment variables:
+- Copy `.env.example` to `.env` in the backend directory
+- Update the database connection details
+
+5. Start the development servers:
+
+Frontend:
+```bash
+npm run dev
+```
+
+Backend:
+```bash
+cd backend
+npm run dev
+```
+
+## Documentation
+
+Detailed documentation can be found in the `claudeDev_docs` directory:
+- [User Guide](claudeDev_docs/UserGuide.md)
+- [API Documentation](claudeDev_docs/APIDocumentation.md)
+- [Technical Documentation](claudeDev_docs/techStack.md)
+- [Deployment Guide](claudeDev_docs/DeploymentOptions.md)
 
 ## Contributing
 
-We welcome contributions! Please:
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
-
-For more details, see our [Developer Setup Guide](claudeDev_docs/userInstructions/DeveloperSetup.md).
+Contributions are welcome! Please read our contributing guidelines for details on our code of conduct and the process for submitting pull requests.
 
 ## License
 
-[Specify the project's license]
+This project is licensed under the MIT License - see the LICENSE file for details.
