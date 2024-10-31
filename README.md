@@ -149,32 +149,48 @@ soil-moisture-simulation/
 ## Getting Started
 
 ### Prerequisites
-- Docker and Docker Compose
+- Docker Desktop installed and running (required for both Windows and Mac)
+  - Includes Docker Engine and Docker Compose
+  - Must be started before running the application
 - Node.js (v14 or later)
 - npm or yarn
 
-### Installation
+### First-Time Installation
 
 1. Clone the repository:
 ```bash
 git clone [repository-url]
-cd soil-moisture-simulation-working__fullStack
+cd soil-moisture-simulation-fullStack
 ```
 
-2. Build and start the containers:
+2. Start Docker Desktop and ensure it's running
+
+3. Start the database and backend services:
 ```bash
 docker-compose up --build
 ```
-This command will:
-- Build the backend container
-- Start the PostgreSQL database
-- Initialize the database schema
-- Start the backend server
 
-3. Install frontend dependencies and start the development server:
+4. In a new terminal, install dependencies (only needed for first-time setup):
 ```bash
-# In a new terminal
+# Install frontend dependencies
 npm install
+
+# Install backend dependencies
+cd backend
+npm install
+cd ..
+```
+
+5. Start the backend development server:
+```bash
+# In the backend directory
+cd backend
+npm run dev
+```
+
+6. In a new terminal, start the frontend development server:
+```bash
+# In the project root directory
 npm run dev
 ```
 
@@ -182,6 +198,26 @@ The application will be available at:
 - Frontend: http://localhost:3001
 - Backend API: http://localhost:3000
 - API Documentation: http://localhost:3000/api-docs
+
+### Subsequent Runs
+
+1. Ensure Docker Desktop is running
+
+2. Start the database and backend services:
+```bash
+docker-compose up --build
+```
+
+3. In a new terminal, start the backend server:
+```bash
+cd backend
+npm run dev
+```
+
+4. In another new terminal, start the frontend:
+```bash
+npm run dev
+```
 
 ### Development Setup
 
@@ -208,25 +244,6 @@ The database schema is automatically initialized when the containers start. The 
 
 A default user (ID: 1) is automatically created for testing purposes.
 
-#### Development Commands
-
-Backend development:
-```bash
-# Stop containers
-docker-compose down
-
-# Remove volumes (if schema changes are made)
-docker-compose down -v
-
-# Rebuild and start
-docker-compose up --build
-```
-
-Frontend development:
-```bash
-# Start frontend development server
-npm run dev
-```
 
 ### Troubleshooting
 
