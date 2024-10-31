@@ -159,18 +159,16 @@ soil-moisture-simulation/
 
 1. Clone the repository:
 ```bash
-git clone [repository-url]
+git clone https://github.com/ldor80/soil-moisture-simulation-fullStack.git
 cd soil-moisture-simulation-fullStack
 ```
 
-2. Start Docker Desktop and ensure it's running
+2. Start Docker Desktop:
+   - Windows: Search for Docker Desktop in the Start menu
+   - Mac: Open Docker Desktop from Applications
+   - Wait until you see "Docker Desktop is running" in the system tray
 
-3. Start the database and backend services:
-```bash
-docker-compose up --build
-```
-
-4. In a new terminal, install dependencies (only needed for first-time setup):
+3. Install dependencies (only needed for first-time setup):
 ```bash
 # Install frontend dependencies
 npm install
@@ -181,14 +179,19 @@ npm install
 cd ..
 ```
 
-5. Start the backend development server:
+4. Start the database and backend services:
+```bash
+docker-compose up --build
+```
+
+5. In a new terminal, start the backend development server:
 ```bash
 # In the backend directory
 cd backend
 npm run dev
 ```
 
-6. In a new terminal, start the frontend development server:
+6. In another new terminal, start the frontend development server:
 ```bash
 # In the project root directory
 npm run dev
@@ -199,25 +202,16 @@ The application will be available at:
 - Backend API: http://localhost:3000
 - API Documentation: http://localhost:3000/api-docs
 
-### Subsequent Runs
+### Important Notes
 
-1. Ensure Docker Desktop is running
+#### Authentication System
+The authentication system is currently simplified for development:
+- Using a default user (ID: 1) for all operations
+- Authentication-related packages (bcrypt, jsonwebtoken) are temporarily disabled
+- Only TypeScript type definitions are included to maintain type safety
+- No actual authentication is performed
 
-2. Start the database and backend services:
-```bash
-docker-compose up --build
-```
-
-3. In a new terminal, start the backend server:
-```bash
-cd backend
-npm run dev
-```
-
-4. In another new terminal, start the frontend:
-```bash
-npm run dev
-```
+This setup allows for easier cross-platform development while maintaining the ability to add full authentication later.
 
 ### Development Setup
 
@@ -340,3 +334,4 @@ Contributions are welcome! Please read our contributing guidelines for details o
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
