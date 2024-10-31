@@ -48,10 +48,6 @@ Future Implementation Plan:
 4. Add user management features
 5. Update frontend for authentication flow
 
-Known Issues:
-- bcrypt compatibility between ARM and x86 architectures
-- Solution: Temporary removal for development, plan proper cross-platform setup
-
 ### Performance Optimization
 - [ ] Analyze performance bottlenecks
 - [ ] Implement memoization where beneficial
@@ -70,13 +66,41 @@ Known Issues:
 - ✅ Updated Sprint2 documentation
 - ✅ Improved README.md
 
+### Known Issues
+
+#### Cross-Platform Compatibility
+- bcrypt compatibility between ARM and x86 architectures
+  - Current solution: Temporary removal for development
+  - Future plan: Implement proper cross-platform build setup
+
+#### Core Functionality
+- Simulation loading functionality is not operational
+- Parameter changes after simulation start have issues:
+  - Changes don't properly affect simulation behavior
+  - Exported data doesn't accurately reflect modifications
+  - Users must set all parameters before starting simulation
+
+#### Performance and Testing
+- Performance monitoring needed for large grids
+- Comprehensive testing suite required
+- User interaction testing pending
+
+#### User Interface
+- Ongoing parameter UI feedback collection
+- Need improved error handling for parameter changes
+- Better user feedback needed for simulation state changes
+
 ## Next Steps
 
 ### Short Term
 1. Complete performance optimization tasks
 2. Implement comprehensive testing suite
 3. Gather user feedback on new features
-4. Address any reported issues
+4. Address critical functionality issues:
+   - Fix simulation loading functionality
+   - Implement proper parameter change handling during simulation
+   - Ensure exported data reflects all parameter changes
+5. Address any other reported issues
 
 ### Medium Term
 1. Consider implementing:
@@ -108,12 +132,6 @@ Known Issues:
 - More reliable simulation behavior
 - Enhanced data consistency
 - Improved user experience
-
-### Known Issues
-- None currently reported for the new features
-- Monitoring performance with large grids
-- Gathering feedback on parameter UI
-- Cross-platform compatibility with bcrypt
 
 ### Development Guidelines
 1. Maintain state consistency patterns

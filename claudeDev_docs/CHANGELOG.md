@@ -23,12 +23,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Enhanced gridHistory to include parameter changes and user actions
 - Modified reset functionality to use stored initial grid
 - Improved synchronization between grid and history states
+- Temporarily removed bcrypt dependency to support cross-platform development
 
 ### Fixed
 - State consistency issues in multiple quick updates
 - Grid history management for parameter changes
 - Export functionality to ensure data consistency
 - Reset operation accuracy
+
+### Known Issues
+- Simulation loading functionality is currently non-operational
+- Parameter changes after simulation start:
+  - Don't properly affect simulation behavior
+  - Not accurately reflected in exported data
+- Cross-platform compatibility issues with native modules
+- Database initialization requires specific file ordering
+
+### Development Notes
+- Parameter changes should be set before starting simulation
+- Using default user (ID: 1) for all operations during development
+- SQL files renamed to ensure proper initialization order:
+  - 01_create_users_table.sql
+  - 02_create_simulations_table.sql
 
 ## [0.2.0] - 2023-05-XX
 
