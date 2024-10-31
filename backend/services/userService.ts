@@ -1,25 +1,43 @@
 import db from '../db';
 import { User, UserInput } from '../models/User';
-import bcrypt from 'bcrypt';
+
+/**
+ * Development mode user service
+ * In development, we use a default user (id: 1) for all operations
+ */
 
 export async function createUser(user: UserInput): Promise<User> {
-  const { username, email, password } = user;
-  const hashedPassword = await bcrypt.hash(password, 10);
-
-  const result = await db.query(
-    'INSERT INTO users (username, email, password_hash) VALUES ($1, $2, $3) RETURNING *',
-    [username, email, hashedPassword]
-  );
-
-  return result.rows[0];
+  // In development mode, return default user without database operation
+  return {
+    id: 1,
+    username: 'dev_user',
+    email: 'dev@example.com',
+    password_hash: 'dev_mode_no_hash',
+    created_at: new Date(),
+    updated_at: new Date()
+  };
 }
 
 export async function getUserByUsername(username: string): Promise<User | null> {
-  const result = await db.query('SELECT * FROM users WHERE username = $1', [username]);
-  return result.rows[0] || null;
+  // In development mode, always return default user
+  return {
+    id: 1,
+    username: 'dev_user',
+    email: 'dev@example.com',
+    password_hash: 'dev_mode_no_hash',
+    created_at: new Date(),
+    updated_at: new Date()
+  };
 }
 
 export async function getUserByEmail(email: string): Promise<User | null> {
-  const result = await db.query('SELECT * FROM users WHERE email = $1', [email]);
-  return result.rows[0] || null;
+  // In development mode, always return default user
+  return {
+    id: 1,
+    username: 'dev_user',
+    email: 'dev@example.com',
+    password_hash: 'dev_mode_no_hash',
+    created_at: new Date(),
+    updated_at: new Date()
+  };
 }

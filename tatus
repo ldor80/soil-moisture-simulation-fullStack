@@ -1,0 +1,13 @@
+[33mcommit 6b685b3f180390bb666797580320088a15333b83[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: ldor80 <liordor@gmail.com>
+Date:   Thu Oct 31 16:59:38 2024 +0200
+
+    docs: Update documentation with known issues and current status
+    
+    - Add known issues and limitations to README
+    - Update CHANGELOG with current development status
+    - Document error tracking in errors.md
+    - Update currentTask with consolidated issues list
+    - Add cross-platform compatibility notes
+    - Add parameter change limitations warning
+    - Improve troubleshooting guides

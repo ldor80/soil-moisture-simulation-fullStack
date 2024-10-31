@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Automatic save prompt before export operations
 - Simulation load and save state tracking using useRef
 - "Reset All Cells to Global Parameters" button with info tooltip
+- Development mode authentication system for cross-platform compatibility
 
 ### Changed
 - Enhanced grid initialization to store initial state for accurate resets
@@ -24,12 +25,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Modified reset functionality to use stored initial grid
 - Improved synchronization between grid and history states
 - Temporarily removed bcrypt dependency to support cross-platform development
+- Simplified authentication system for development:
+  - Removed JWT dependency for simpler development workflow
+  - Modified auth middleware to use default development user
+  - Updated user routes to support development mode
+  - Preserved authentication infrastructure for future implementation
+  - Added clear documentation of development mode behavior
 
 ### Fixed
 - State consistency issues in multiple quick updates
 - Grid history management for parameter changes
 - Export functionality to ensure data consistency
 - Reset operation accuracy
+- Cross-platform compatibility issues:
+  - Removed bcrypt to resolve ARM/x86 architecture conflicts
+  - Simplified user authentication for development
+  - Updated API endpoints to work consistently across platforms
 
 ### Known Issues
 - Simulation loading functionality is currently non-operational
@@ -45,6 +56,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - SQL files renamed to ensure proper initialization order:
   - 01_create_users_table.sql
   - 02_create_simulations_table.sql
+- Authentication system is in development mode:
+  - All requests use default user (id: 1)
+  - No password hashing or token verification
+  - API structure maintained for future auth implementation
 
 ## [0.2.0] - 2023-05-XX
 

@@ -1,7 +1,5 @@
 import express, { Request, Response, NextFunction } from 'express';
 import { createUser, getUserByEmail } from '../services/userService';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import { UserInput } from '../models/User';
 import { body, validationResult } from 'express-validator';
 
@@ -30,7 +28,7 @@ const handleValidationErrors = (req: Request, res: Response, next: NextFunction)
  * @swagger
  * /api/users/register:
  *   post:
- *     summary: Register a new user
+ *     summary: Register a new user (Development Mode)
  *     tags: [Users]
  *     requestBody:
  *       required: true
@@ -62,11 +60,14 @@ const handleValidationErrors = (req: Request, res: Response, next: NextFunction)
  */
 router.post('/register', validateRegistration, handleValidationErrors, async (req: Request, res: Response) => {
   try {
-    const user: UserInput = req.body;
-    const newUser = await createUser(user);
-    res.status(201).json({ message: 'User created successfully', userId: newUser.id });
+    // In development mode, always return success with default user
+    res.status(201).json({ 
+      message: 'Development Mode: User registration simulated', 
+      userId: 1,
+      note: 'Using default user (id: 1) for development'
+    });
   } catch (error) {
-    res.status(500).json({ message: 'Error creating user', error });
+    res.status(500).json({ message: 'Error in development mode registration', error });
   }
 });
 
@@ -74,7 +75,7 @@ router.post('/register', validateRegistration, handleValidationErrors, async (re
  * @swagger
  * /api/users/login:
  *   post:
- *     summary: Login a user
+ *     summary: Login a user (Development Mode)
  *     tags: [Users]
  *     requestBody:
  *       required: true
@@ -103,26 +104,16 @@ router.post('/register', validateRegistration, handleValidationErrors, async (re
  */
 router.post('/login', validateLogin, handleValidationErrors, async (req: Request, res: Response) => {
   try {
-    const { email, password } = req.body;
-    const user = await getUserByEmail(email);
-
-    if (!user) {
-      return res.status(401).json({ message: 'Invalid email or password' });
-    }
-
-    const isPasswordValid = await bcrypt.compare(password, user.password_hash);
-
-    if (!isPasswordValid) {
-      return res.status(401).json({ message: 'Invalid email or password' });
-    }
-
-    const token = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET as string, {
-      expiresIn: '1h',
+    // In development mode, always return success with default user token
+    const devToken = 'dev-mode-token';
+    res.json({ 
+      message: 'Development Mode: Login successful', 
+      token: devToken,
+      userId: 1,
+      note: 'Using default user (id: 1) for development'
     });
-
-    res.json({ message: 'Login successful', token });
   } catch (error) {
-    res.status(500).json({ message: 'Error during login', error });
+    res.status(500).json({ message: 'Error in development mode login', error });
   }
 });
 
