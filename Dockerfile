@@ -1,22 +1,20 @@
-FROM node:14
+FROM node:18-alpine
 
 WORKDIR /usr/src/app
 
-# Install specific npm version and increase memory
-RUN npm install -g npm@8.19.4 && \
-    npm cache clean --force
-
-# Copy package files
+# Install dependencies first
 COPY package*.json ./
-
-# Install dependencies with increased memory
-ENV NODE_OPTIONS="--max-old-space-size=4096"
 RUN npm install --legacy-peer-deps
 
 # Copy source files
 COPY . .
 
+# Set environment variables
+ENV NODE_ENV=development
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV PORT=3001
+
 EXPOSE 3001
 
-# Start Next.js development server
-CMD ["npm", "run", "dev"]
+# Start Next.js development server with specific host
+CMD ["npm", "run", "dev", "--", "-p", "3001", "--hostname", "0.0.0.0"]
