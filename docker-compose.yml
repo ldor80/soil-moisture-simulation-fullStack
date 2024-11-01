@@ -1,17 +1,5 @@
 version: '3.8'
 services:
-  db:
-    image: postgres:13
-    ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_DB=soil_irrigation_simulator
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-      - ./backend/sql:/docker-entrypoint-initdb.d
-
   backend:
     build: ./backend
     ports:
@@ -25,9 +13,22 @@ services:
       - DB_USER=postgres
       - DB_PASSWORD=postgres
       - JWT_SECRET=your_jwt_secret_key
+      - NODE_ENV=development
     volumes:
       - ./backend:/usr/src/app
       - /usr/src/app/node_modules
+
+  db:
+    image: postgres:13
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=soil_irrigation_simulator
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./backend/sql:/docker-entrypoint-initdb.d
 
   frontend:
     build: 
@@ -37,8 +38,10 @@ services:
       - "3001:3001"
     environment:
       - NEXT_PUBLIC_API_URL=http://localhost:3000
+      - NODE_ENV=development
+      - NEXT_TELEMETRY_DISABLED=1
+      - WATCHPACK_POLLING=true
     depends_on:
-      - db
       - backend
 
 volumes:
