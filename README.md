@@ -152,10 +152,8 @@ soil-moisture-simulation/
 - Docker Desktop installed and running (required for both Windows and Mac)
   - Includes Docker Engine and Docker Compose
   - Must be started before running the application
-- Node.js (v14 or later)
-- npm or yarn
 
-### First-Time Installation
+### Installation
 
 1. Clone the repository:
 ```bash
@@ -168,33 +166,9 @@ cd soil-moisture-simulation-fullStack
    - Mac: Open Docker Desktop from Applications
    - Wait until you see "Docker Desktop is running" in the system tray
 
-3. Install dependencies (only needed for first-time setup):
-```bash
-# Install frontend dependencies
-npm install
-
-# Install backend dependencies
-cd backend
-npm install
-cd ..
-```
-
-4. Start the database and backend services:
+3. Build and start the application:
 ```bash
 docker-compose up --build
-```
-
-5. In a new terminal, start the backend development server:
-```bash
-# In the backend directory
-cd backend
-npm run dev
-```
-
-6. In another new terminal, start the frontend development server:
-```bash
-# In the project root directory
-npm run dev
 ```
 
 The application will be available at:
