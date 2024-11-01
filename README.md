@@ -314,6 +314,15 @@ npm install
 - Native modules (like bcrypt) are currently disabled to ensure cross-platform compatibility
 - Future updates will implement proper cross-platform build configurations
 
+### TypeScript Build
+- Pre-compiled TypeScript files (dist/) are now included in the repository for easier development setup
+- When making changes to TypeScript files, rebuild using:
+  ```bash
+  cd backend
+  npm run build
+  ```
+- This approach simplifies development sharing while maintaining type safety
+
 ### Performance Considerations
 - Large datasets may require performance optimization
 - Consider using smaller test datasets during development
