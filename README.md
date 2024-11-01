@@ -166,9 +166,14 @@ cd soil-moisture-simulation-fullStack
    - Mac: Open Docker Desktop from Applications
    - Wait until you see "Docker Desktop is running" in the system tray
 
-3. Build and start the application:
+3. Build and start all services:
 ```bash
+# Clean start (recommended for first run)
+docker-compose down -v
 docker-compose up --build
+
+# For subsequent runs
+docker-compose up
 ```
 
 The application will be available at:
@@ -189,20 +194,57 @@ This setup allows for easier cross-platform development while maintaining the ab
 
 ### Development Setup
 
+When making changes to the code:
+
+1. Frontend changes:
+   - Changes will automatically reload due to Next.js hot reloading
+   - The frontend container waits for both database and backend to be ready
+
+2. Backend changes:
+   - Edit TypeScript files
+   - Rebuild the backend:
+     ```bash
+     cd backend
+     npm run build
+     ```
+   - Restart the backend container:
+     ```bash
+     docker-compose restart backend
+     ```
+
 #### Configuration
 
-All necessary configuration is handled through docker-compose.yml. No additional environment setup is required. The backend service is configured with these default settings:
+All necessary configuration is handled through docker-compose.yml. Services are initialized in the following order:
 
+1. Database (db):
 ```yaml
-# From docker-compose.yml
 environment:
-  DB_HOST: db
-  DB_PORT: 5432
-  DB_NAME: soil_irrigation_simulator
-  DB_USER: postgres
-  DB_PASSWORD: postgres
-  JWT_SECRET: your_jwt_secret_key
+  - POSTGRES_DB=soil_irrigation_simulator
+  - POSTGRES_USER=postgres
+  - POSTGRES_PASSWORD=postgres
 ```
+
+2. Backend:
+```yaml
+environment:
+  - DB_HOST=db
+  - DB_PORT=5432
+  - DB_NAME=soil_irrigation_simulator
+  - DB_USER=postgres
+  - DB_PASSWORD=postgres
+  - JWT_SECRET=your_jwt_secret_key
+```
+
+3. Frontend:
+```yaml
+environment:
+  - NEXT_PUBLIC_API_URL=http://localhost:3000
+```
+
+This initialization order ensures that:
+- Database is ready before backend starts
+- Backend API is available before frontend starts
+- All services are properly connected
 
 #### Database
 
@@ -317,4 +359,5 @@ Contributions are welcome! Please read our contributing guidelines for details o
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
 
